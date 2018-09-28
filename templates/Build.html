@@ -1,0 +1,56 @@
+{% extends 'Base.html' %}
+{% block body %}
+
+    <br><br>
+    <table class="w3-table w3-content w3-padding w3-bordered">
+        <tr><th>Component</th><th>Selection</th></tr>
+        {% for k,v in parts.items() %}
+            <tr>
+                <td>{{k}}</td>
+                <td style="width: 75%;"><div id="{{v}}"></div><br><button class="w3-btn w3-teal getParts" value="{{v}}">Choose {{k}}</button></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div class="w3-modal" id="partsModal">
+        <div class="w3-modal-content w3-animate-top w3-card-4 w3-padding" style="width: 75%;overflow-y: auto;" id="partsModalContent">
+            <h3 class="w3-text-black w3-center">Pick your poison</h3>
+            <span class="w3-button w3-black w3-xlarge w3-hover-red w3-display-topright" id="closeModal">&times;</span>
+            <div id="partsTable" class="w3-text-black">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $("button.getParts").click(function () {
+            var btnValue = $(this).val();
+            console.log(btnValue);
+            $("#partsTable").html("<div class=\"w3-container w3-center w3-text-black\">\n" +
+                "<h1>Fetching data...</h1>\n" +
+                "<p><i class=\"fa fa-spinner w3-spin\" style=\"font-size:64px\"></i></p>\n" +
+                "</div>");
+            $("#partsModal").fadeIn();
+            $("#partsModalContent").slideDown();
+            $.ajax({
+                type: "POST",
+                url: "/build/getparts",
+                data: {"Type" : btnValue},
+                success: function (response) {
+                    console.log(response);
+                    $("#partsTable").html(response);
+                }
+            });
+        });
+        $("#closeModal").click(function () {
+            $("#partsModal").fadeOut();
+        })
+        $("#partsModal").click(function (event) {
+            if (event.target !== this)
+                return;
+            $("#partsModal").fadeOut();
+        })
+    </script>
+
+
+{% endblock %}

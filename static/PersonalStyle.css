@@ -1,0 +1,122 @@
+body , html{
+	height: 100%;
+	margin: 0px;
+	font-size: 16px;
+	font-family: "Lato" , sans-serif;
+	font-weight: 400;
+	line-height: 1.8em;
+	color: #666;
+}
+.img1, .img2, .img3{
+	opacity: 1;
+	position: relative;
+}
+
+.img1{
+	background: url('./Assets/Home1.jpg');
+	min-height: 100%;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.img2{
+	background: url('./Assets/Home2.jpg');
+	min-height: 700px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	/* Main attribute for Parallax Effect*/
+	background-attachment: fixed;
+}
+
+.img3{
+	background: url('./Assets/Home3.jpg');
+	min-height: 700px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.section{
+	text-align: center;
+	padding: 40px 50px;
+}
+
+.section-light{
+	background-color: #f4f4f4;
+	color: #666;
+}
+
+.section-dark{
+	background-color: #282e34; 
+	color: #ddd;
+}
+.imgtext.top{
+	break-after: 5;
+}
+
+.imgtext{
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	width: 100%;
+	color: #999;
+	letter-spacing: 8px;
+	text-transform: uppercase;
+	font-size: 15px;
+}
+
+.border{
+	background-color: #111;
+	color: #fff;
+	padding: 13px;
+}
+
+@media(max-width: 400px){
+	.img1 , .img2 ,.img3{
+		background-attachment: scroll;
+	}
+}
+
+/* Dynamic OnHover Animation */
+.imgcontainer_parent{
+	width: 100%;
+	display: inline;
+}
+.imgcontainer{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	margin: 50 auto;
+	background-color: #ddd;
+}
+
+#box1{	
+	background-position: center;
+	background-size: cover;
+	background-image: url("./Assets/pic1.jpg");
+}
+
+#box2{
+	background-position: center;
+	background-size: cover;
+	background-image: url("./Assets/pic3.jpg");
+}
+
+#box3{
+	background-position: center;
+	background-size: cover;
+	background-image: url("./Assets/pic2.jpg");
+}
+
+.imgbox{
+	flex: 1;
+	transition: 0.5s;
+}
+
+.imgbox:hover{
+	flex: 10;
+}

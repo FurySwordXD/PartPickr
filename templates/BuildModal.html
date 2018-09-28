@@ -1,0 +1,34 @@
+<table class="w3-table-all w3-hoverable">
+    <tr>
+       <th>Image</th><th>Component</th><th style="width: 20%">Price</th>
+    </tr>
+    {% for i in availableParts %}
+        <tr>
+            <td><img class="w3-img" src="{{i['Img_Src']}}"></td>
+            <td>{{i['Title']}}</td>
+            <td>{{i['Price']}}<br><br><button class="w3-btn w3-black addPart" value="{{availableParts.index(i)}}">Select</button></td>
+        </tr>
+    {% endfor %}
+</table>
+
+<script type="text/javascript">
+
+    $("button.addPart").click(function () {
+        var datastring = {"PartID" : $(this).val()};
+        console.log(datastring);
+        console.log('{{part}}');
+         $.ajax({
+            type: 'POST',
+            url: '/build/addpart/{{part}}',
+            data: datastring,
+            success: function (response) {
+                console.log(response);
+                part = '#{{part}}';
+                $(part).html(response);
+                $('button.getParts[value="{{part}}"]').text("Choose another {{part}}")
+            }
+        });
+        $("#partsModal").fadeOut();
+    });
+
+</script>
