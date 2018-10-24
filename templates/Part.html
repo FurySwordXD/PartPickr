@@ -1,15 +1,26 @@
 <table class="w3-table w3-card-4">
     <tr style="border-bottom: none;">
         <td><img class="w3-img" src="{{src}}"></td>
-        <td>{{title}}<br><br>{{price}}<br><br><button class="w3-button w3-black w3-hover-red removePart" value="{{part}}">Remove</button></td>
+        <td>{{title}}<br><br>
+            {{price}}<br><br>
+            <button class="w3-button w3-black w3-hover-red removePart" value="{{part}}">Remove</button>
+        </td>
     </tr>
 </table>
 
 <script>
-
-    $("button.removePart").click(function () {
+    $(".removePart").click(function() {
         part = $(this).val();
-        $("#"+part).html("");
-        $('button.getParts[value="{{part}}"]').text("Choose {{part}}");
+        console.log(part);
+        $.ajax({
+            type: "POST",
+            url: "/build/removepart",
+            data: {"Part": part},
+            success: function(response)
+            {
+                $("#"+part).html("");
+                $('.getParts[value="'+part+'"]').text("Choose "+part);
+            }
+        });
     });
 </script>

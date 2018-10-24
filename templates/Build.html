@@ -7,7 +7,21 @@
         {% for k,v in parts.items() %}
             <tr>
                 <td>{{k}}</td>
-                <td style="width: 75%;"><div id="{{v}}"></div><br><button class="w3-btn w3-teal getParts" value="{{v}}">Choose {{k}}</button></td>
+                <td style="width: 75%;">
+                {% if selectedParts[v] %}
+                    <div id="{{v}}">
+                        <table class="w3-table w3-card-4">
+                            <tr style="border-bottom: none;">
+                                <td><img class="w3-img" src="{{selectedParts[v]['Img_Src']}}"></td>
+                                <td>{{selectedParts[v]['Title']}}<br><br>{{selectedParts[v]['Price']}}<br><br><button class="w3-button w3-black w3-hover-red removePart" value="{{v}}">Remove</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br><button class="w3-btn w3-teal getParts" value="{{v}}">Choose another {{k}}</button>
+                {% else %}
+                    <div id="{{v}}"></div><br><button class="w3-btn w3-teal getParts" value="{{v}}">Choose {{k}}</button>
+                {% endif %}
+                </td>
             </tr>
         {% endfor %}
     </table>
@@ -42,6 +56,22 @@
                 }
             });
         });
+        
+        $(".removePart").click(function() {
+            part = $(this).val();
+            console.log(part);
+            $.ajax({
+                type: "POST",
+                url: "/build/removepart",
+                data: {"Part": part},
+                success: function(response)
+                {
+                    $("#"+part).html("");
+                    $('.getParts[value="'+part+'"]').text("Choose "+part);
+                }
+            });
+        });
+
         $("#closeModal").click(function () {
             $("#partsModal").fadeOut();
         })

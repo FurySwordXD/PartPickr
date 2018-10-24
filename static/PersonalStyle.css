@@ -13,7 +13,7 @@ body , html{
 }
 
 .img1{
-	background: url('./Assets/Home1.jpg');
+	background: url('Assets/Home1.jpg');
 	min-height: 100%;
 	background-position: center;
 	background-size: cover;
@@ -22,7 +22,7 @@ body , html{
 }
 
 .img2{
-	background: url('./Assets/Home2.jpg');
+	background: url('Assets/Home2.jpg');
 	min-height: 700px;
 	background-position: center;
 	background-size: cover;
@@ -32,7 +32,7 @@ body , html{
 }
 
 .img3{
-	background: url('./Assets/Home3.jpg');
+	background: url('Assets/Home3.jpg');
 	min-height: 700px;
 	background-position: center;
 	background-size: cover;
@@ -97,19 +97,19 @@ body , html{
 #box1{	
 	background-position: center;
 	background-size: cover;
-	background-image: url("./Assets/pic1.jpg");
+	background-image: url("Assets/pic1.jpg");
 }
 
 #box2{
 	background-position: center;
 	background-size: cover;
-	background-image: url("./Assets/pic3.jpg");
+	background-image: url("Assets/pic3.jpg");
 }
 
 #box3{
 	background-position: center;
 	background-size: cover;
-	background-image: url("./Assets/pic2.jpg");
+	background-image: url("Assets/pic2.jpg");
 }
 
 .imgbox{

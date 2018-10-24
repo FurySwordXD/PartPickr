@@ -14,12 +14,12 @@
 <script type="text/javascript">
 
     $("button.addPart").click(function () {
-        var datastring = {"PartID" : $(this).val()};
+        var datastring = {"Part": "{{part}}", "PartID" : $(this).val()};
         console.log(datastring);
         console.log('{{part}}');
          $.ajax({
             type: 'POST',
-            url: '/build/addpart/{{part}}',
+            url: '/build/addpart',
             data: datastring,
             success: function (response) {
                 console.log(response);
